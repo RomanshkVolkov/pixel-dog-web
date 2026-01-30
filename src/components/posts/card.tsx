@@ -13,7 +13,7 @@ export default function PostCard({ image, alt, amountDonated, className = "" }: 
       <div className="relative group rounded-xl overflow-hidden cursor-zoom-in h-full flex-1">
         <img
           alt={alt}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           data-alt={alt}
           src={image}
         />

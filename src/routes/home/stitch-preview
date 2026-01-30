@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pixel Dog Gallery | Micro-philanthropy for Pets</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee8c2b",
+                        "background-light": "#fcfaf8",
+                        "background-dark": "#1b140d",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .masonry-grid {
+            column-count: 2;
+            column-gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 4;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .masonry-grid {
+                column-count: 5;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#1b140d] dark:text-white transition-colors duration-300">
+    <!-- TopNavBar -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-solid border-[#f3ede7] dark:border-[#2d241d] bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-4 lg:px-10">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <div class="text-primary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-3xl"
+                            style="font-variation-settings: 'FILL' 1">pets</span>
+                    </div>
+                    <h1 class="text-xl font-bold tracking-tight">Pixel Dog</h1>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Gallery</a>
+                    <a class="text-sm font-medium text-[#9a734c] hover:text-primary transition-colors"
+                        href="#">Impact</a>
+                    <a class="text-sm font-medium text-[#9a734c] hover:text-primary transition-colors"
+                        href="#">Transparency</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4 lg:gap-6">
+                <div class="relative hidden sm:block">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#9a734c] text-xl">search</span>
+                    <input
+                        class="bg-[#f3ede7] dark:bg-[#2d241d] border-none rounded-full py-2 pl-10 pr-4 text-sm w-48 lg:w-64 focus:ring-2 focus:ring-primary/50 transition-all"
+                        placeholder="Find a pet..." type="text" />
+                </div>
+                <button
+                    class="flex items-center gap-2 bg-primary hover:bg-[#d97b1f] text-white px-4 py-2 rounded-full text-sm font-bold shadow-sm transition-all active:scale-95">
+                    <span class="material-symbols-outlined text-lg">add_circle</span>
+                    <span class="hidden sm:inline">Donate &amp; Upload</span>
+                </button>
+                <div class="size-9 rounded-full bg-cover bg-center border-2 border-primary/20"
+                    data-alt="User profile avatar"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBb75NAjYh5EyGSC8WellRvCpLeq_GlKsxRShKDXoKGMusAwZIVlZcCl6FrMzhCAzxVQkMBk8N-9pI33z5xrZ_HDO8z4Gd9b4izZmh11gE2Hqh-FHFSkt0FT-0Cz1e7AzGQdKApKE6ILshZ8CNwGLZF40H22ZPYNASTdCxnSLKE-czFgn2bjO4CR3HmiHxkrsM347VrerbJ7T0YcmbQLSulbcsvncoqDoKAzhZRvIu2dlSO6YkM8xsxxr-iU16iAfC56clGH4E0adz4");'>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-[1440px] mx-auto px-4 py-8 lg:px-10">
+        <!-- Hero Section -->
+        <section class="max-w-2xl mx-auto text-center mb-12">
+            <h2 class="text-[#1b140d] dark:text-white text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
+                Small Acts, Big Wags
+            </h2>
+            <p class="text-[#9a734c] dark:text-[#c0a080] text-lg font-medium max-w-lg mx-auto leading-relaxed">
+                Every pet photo shared fuels our micro-philanthropy mission to support local shelters and rescue groups.
+            </p>
+        </section>
+        <!-- Chips / Filter Bar -->
+        <div class="flex items-center justify-center gap-2 mb-10 overflow-x-auto pb-4 no-scrollbar">
+            <button class="bg-primary text-white px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap">All
+                Pets</button>
+            <button
+                class="bg-[#f3ede7] dark:bg-[#2d241d] text-[#1b140d] dark:text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#e8dfd5] transition-colors whitespace-nowrap">Dogs</button>
+            <button
+                class="bg-[#f3ede7] dark:bg-[#2d241d] text-[#1b140d] dark:text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#e8dfd5] transition-colors whitespace-nowrap">Cats</button>
+            <button
+                class="bg-[#f3ede7] dark:bg-[#2d241d] text-[#1b140d] dark:text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#e8dfd5] transition-colors whitespace-nowrap">Birds</button>
+            <button
+                class="bg-[#f3ede7] dark:bg-[#2d241d] text-[#1b140d] dark:text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#e8dfd5] transition-colors whitespace-nowrap">Small
+                Furries</button>
+            <button
+                class="bg-[#f3ede7] dark:bg-[#2d241d] text-[#1b140d] dark:text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#e8dfd5] transition-colors whitespace-nowrap">Recently
+                Adopted</button>
+        </div>
+        <!-- Masonry Image Grid -->
+        <div class="masonry-grid">
+            <!-- Upload Card -->
+            <div class="masonry-item">
+                <div
+                    class="group relative bg-primary/5 dark:bg-primary/10 border-2 border-dashed border-primary/40 rounded-xl flex flex-col items-center justify-center p-8 text-center cursor-pointer hover:border-primary transition-all aspect-[4/5]">
+                    <div
+                        class="size-16 rounded-full bg-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl text-primary">cloud_upload</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-[#1b140d] dark:text-white">Share your Pixel Dog</h3>
+                    <p class="text-sm text-[#9a734c] dark:text-[#c0a080] mt-2">Upload a photo and donate as little as
+                        $1.00</p>
+                </div>
+            </div>
+            <!-- Card 1 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Close up of a cute yellow lab puppy"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaJI3_rHilOdD-OyFYWUFRnwAzQJfKAfKFX0zqLGNx7vzYzyKWWxF9bVF-69cca4I6xM2Zjwy_D4HIZXLVyRzl-7ZEmKJkSufm2XXOD04MZR9piZpyCNlLjSTw9xNNzYPCnA9XslbYcIMTvvWnR6y8qwLCz5IBane12MjYJ3KjbISBpSzXYuKxqDKcm7wLslo-qbcArTo38zkU4bhI4wEAcxjeY-ZbBmtynpfIyXBJOIrgdVdXxa-Yepm2gAAU8OqwkUtOEraMnWgF" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Buddy</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $1.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                            class="bg-white/90 backdrop-blur size-8 rounded-full flex items-center justify-center text-red-500">
+                            <span class="material-symbols-outlined text-lg"
+                                style="font-variation-settings: 'FILL' 1">favorite</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Cute ginger cat sitting on a white background"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6W2Romk7cwkH0rJaZrB6-VHd6u2ShUpJFKzQ6FFM-y2bO-EoCYpAnt7XYeqTyt4VVYpvP7m6BhoPoGIpDZycw1l9QS9K_3YhbVtJWVQoHlOr7qrQEhSpUOW0ATFIqhK9xd5ezNyg4_b9SNPAvWP759FMoxOwbtDmG8y_F9rIzdyy7AlUpEE-zLLO-R3gk9O3ebLv5zghaGQS_ysapy38eKSdwClvB8jYn5ZJ38csA41AsM6_8XdBGzhtbn08T6uPh0aBlYzlvLoSQ" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Milo</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $5.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Golden retriever looking up at the camera"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8qVPxxs-2w3ColWknXt0gaD9zBOHifLVMy8LAweguumtYwgTKkvcu1xnOv77wOVei5uaFVv09M-dxy3d2D82R1LaWvv0DteeX43Lxf1QkyjBRgI-0rt7Ba0xChGQqeXNnY8ZrOr5bKVO9c6i-MahNW6z35i01LVpfc4zUCPanosMDZgwFr8hFi_1Pyimou1fq38vdlNgIcediG4F8mtXkrZ_KYNCcHni5CMc9h4t1MwcMulsdSqA03QyOTJpQmX6Oc1Mn2_hjR9cF" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Luna</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $2.50 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Fluffy pomeranian with its tongue out"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHGRkBIwT9WgkWtYWUoX7PQCud3oETCPNQ74Lzji6gZ6SvDRjXl5vYod8ZfbHXenGE8Oc-efh_xSFQdwJTuYiOa6Urvkq3mqyPCPjJSmYsyVshPgJKSKcxAcI4Lj34Qh38zm6Jtzz3XFRKJiJvWOomIELCctmF8tiNjOieAnX3d5DyJDvhHeddHz7tztY4KLH91rL9N9U7LVrUo-lyWPEpirtKnRvCgZAai_UPobvNufT5mmtyuyXN_8ThWPsNDdAt91o3wXW1T3XH" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Charlie</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $10.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Small white rabbit in a garden"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4komHUQW86Njre05nD2-_66lb9Okm5wFtWYsRuJAWGdGTu92UNAxMxNeLN8VKa0hde1nL1b1iTJVMN3bPBZf7rggW1JlOqGaIz24gCMX6nuJg53FfbNf78gI6HBHzcCT7wHXH2fg3mgzuGKxrl8du71Hbxuc6wDnzwX9vo6AUmjk1U3dM369ZVvYCxMunCRU4DcMnmvbVEw8yq_9XDI1Mg6ibFJCo-DkUvtFaVkLHtG3lJr2xhKOwHc541pRESoAg42IMnBB5dz8X" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Snickers</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $1.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="French bulldog wearing sunglasses"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuQ85pnBpIHK2brGWpDPmDyCTAWblRAdCmxfBXOhy9j9KQYe1EFJ-i9ext00M2ldkEz0x8tRvN5yt_OzAzmMoP4wiapihdSttmGD6tRkHUI_d2AVuWYvOkV4oU4hdLSsVrbtZI-a6JtNGWRZB-sJ9otVTHmjF2XchM2mrxKySZ7uHNEHqTD9QXjnXhMYjIAUWFEINBQ8w3cTt0FH3CIwXhwYRiQqlJYdBr-nWtPvoOO9ynxvO0qIr7ZpMq7h2-qecwaLC-ev0vV1wx" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Cooper</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $5.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Gray tabby cat lying down"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDiV0cBYoI8Sfz9_ff8woG2O-tXwgi62p-9kvl7tFt_D8YRqKOjIMM5HW1muspqgmfn1asA6jxCueip9KqYoJizSmAffDXvbv5b909tx249OrbrbLW0Jo_j2t7Ke8rq21o3NV-1edsriZ-MU7OKYe1RNt5gOK0eQIl_qno8GWsqFHJh-3Tul08fGlPHq5_isf0G75MXSv5ahzSLVtMqFwjuQaAcpYDXG_jHzrUVe-PyPr-siTqlDOu7D2Fs7sxjfzM2iBavVH47H5b" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Oliver</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $2.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Small mixed breed puppy on grass"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgG09Y8gcZWmPTNzx78svUpTfXM0ugMkrNX0XveVLs32SZHhMuuL9_zm_KxSJlxOW5igy1_JhhO3v7mFmZiAuzGVZgh6Rf46ifUd8l967BopDH8RREnrFLnzEudUmFRNe3T9t973Gxl-Hz1Y3mfxUBRbTPDSBTLwDLGypzWu7jEWuEoLhP8n0dKqck_r9CUNzeyLxNwycjfowPbtPmYGNBoTY8MGAusF-XCQRdbkt2paH-fSbPoBJfEswgZZ9M9JIFzpM-eVQnHp_x" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Daisy</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $3.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 9 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Two corgis playing together"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjNaI5iOoMelDmPbgMaSeCHykqs5JLE3bBU41nkY7Z90bCDwQg0lbt6QbB3QGCCr8jF1MLje1l2OW7gUACWDsQOpPDGnSOrXhFwxCRA6izlh0U70gKJ9TjxFdM0542rCGEbPYCNgvDIkCdB0FFWxomeaaCELJhLG-PgNZDQdHU6IBNnQyttD0kPTwLSFz4dW4LmfPyheCKvs9-myFA-L1rtJOCQ1AogbCPgq-QByDQHzkSroe96zA8qfvEEMWMuZXfWgRzkGGYVhlD" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Toby &amp; Sam</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $15.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 10 -->
+            <div class="masonry-item">
+                <div class="relative group rounded-xl overflow-hidden cursor-zoom-in">
+                    <img class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Black and white cat stretching"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDOoL3aSIkFOv10wqJQdUyBOqsOkzhsu9sPqnTM-qx33VYCMfokku1zc95O9Xd-gspkOSsBxZLuY5sqfWce2UO5jRhnhzI1KIKUZthEkUQ6sZFOU2noRT2q-hxeX46iy-JqG-SlhUKMumipfKFXcTmYSf7JxcNoBPK_kCDmDg7VAjgh0Z3LKHiBFCxT3mIxxOwNsxAYpyUo89vrvNCYPzg7enYkmqpWBoRCnmwRSggZunoELdtZuBXG5XHh4VxQQx4GylWMYSFcByB" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                        <div class="flex justify-between items-center text-white">
+                            <span class="font-bold">Sylvester</span>
+                            <div
+                                class="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+                                $1.00 Donated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pagination / Load More -->
+        <div class="flex justify-center mt-12 mb-20">
+            <button
+                class="bg-[#f3ede7] dark:bg-[#2d241d] hover:bg-[#e8dfd5] text-[#1b140d] dark:text-white px-8 py-3 rounded-full font-bold transition-all flex items-center gap-2">
+                <span>View More Animals</span>
+                <span class="material-symbols-outlined">expand_more</span>
+            </button>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#f3ede7] dark:bg-[#150e09] py-12 px-6 lg:px-10">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-2xl"
+                        style="font-variation-settings: 'FILL' 1">pets</span>
+                    <h2 class="text-xl font-bold">Pixel Dog</h2>
+                </div>
+                <p class="text-sm text-[#9a734c] max-w-xs">Connecting pet lovers through micro-donations to support
+                    shelters worldwide. Every pixel counts.</p>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h3 class="font-bold text-sm uppercase tracking-wider text-[#9a734c]">Organization</h3>
+                <a class="text-sm hover:text-primary transition-colors" href="#">Our Mission</a>
+                <a class="text-sm hover:text-primary transition-colors" href="#">How it Works</a>
+                <a class="text-sm hover:text-primary transition-colors" href="#">Transparency Report</a>
+                <a class="text-sm hover:text-primary transition-colors" href="#">Partner Shelters</a>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h3 class="font-bold text-sm uppercase tracking-wider text-[#9a734c]">Community</h3>
+                <a class="text-sm hover:text-primary transition-colors" href="#">Success Stories</a>
+                <a class="text-sm hover:text-primary transition-colors" href="#">Donor FAQ</a>
+                <a class="text-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+                <a class="text-sm hover:text-primary transition-colors" href="#">Privacy Policy</a>
+            </div>
+            <div class="space-y-4">
+                <h3 class="font-bold text-sm uppercase tracking-wider text-[#9a734c]">Newsletter</h3>
+                <div class="flex gap-2">
+                    <input
+                        class="bg-white dark:bg-background-dark border-none rounded-lg px-4 py-2 text-sm flex-1 focus:ring-1 focus:ring-primary"
+                        placeholder="Email address" type="email" />
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold">Join</button>
+                </div>
+                <div class="flex gap-4 pt-2">
+                    <a class="text-[#9a734c] hover:text-primary transition-colors" href="#">
+                        <svg class="size-5" fill="currentColor" viewbox="0 0 24 24">
+                            <path
+                                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="text-[#9a734c] hover:text-primary transition-colors" href="#">
+                        <svg class="size-5" fill="currentColor" viewbox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-[1440px] mx-auto mt-12 pt-8 border-t border-[#e8dfd5] dark:border-[#2d241d] text-center text-xs text-[#9a734c]">
+            © 2024 Pixel Dog. A micro-philanthropy platform for all creatures great and small.
+        </div>
+    </footer>
+</body>
+
+</html>

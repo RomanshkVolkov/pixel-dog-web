@@ -82,7 +82,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen w-full">
-      <main className="w-full flex gap-4 py-12">
+      <main className="w-full flex gap-4 py-12 px-4">
         {/* Error State */}
         {error && !posts.length && (
           <div className="text-center py-12 text-slate-400">
