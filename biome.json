@@ -21,6 +21,9 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "suspicious": {
+        "noArrayIndexKey": "off"
+      },
       "a11y": {
         "useValidAnchor": "off"
       },

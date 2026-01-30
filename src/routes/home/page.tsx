@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Footer from "@/components/footer";
-import PostCard from "@/components/posts/card";
-import { API_URL, getImageUrl } from "@/constants";
+import HorizontalScrollGallery from "@/components/gallery/HorizontalScrollGallery";
+import { API_URL } from "@/constants";
 import type { PaginatedResponse, Post } from "@/types";
 
 export default function HomePage() {
@@ -80,16 +80,9 @@ export default function HomePage() {
     };
   }, [hasMore, loading, nextCursor, fetchPosts]);
 
-  const SkeletonCard = () => (
-    <div className="bg-[rgba(20,27,61,0.6)] rounded-2xl overflow-hidden border border-indigo-500/20 backdrop-blur-md">
-      <div className="w-full pt-[100%] bg-linear-to-br from-slate-800 to-slate-700 animate-shimmer bg-size-[200%_100%]"></div>
-      <div className="h-4 mx-6 my-6 bg-linear-to-r from-slate-800 to-slate-700 rounded animate-shimmer bg-size-[200%_100%]"></div>
-    </div>
-  );
-
   return (
     <div className="min-h-screen w-full">
-      <main className="max-w-7xl mx-auto px-4 md:px-6 py-12">
+      <main className="w-full flex gap-4 py-12">
         {/* Error State */}
         {error && !posts.length && (
           <div className="text-center py-12 text-slate-400">
@@ -110,38 +103,10 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Gallery Grid */}
-        {posts.length > 0 && (
-          <div className="masonry-grid">
-            {posts.map((post, index) => (
-              <PostCard
-                key={`${post.pathname}-${index}`}
-                image={getImageUrl(post.pathname)}
-                alt={post.description || "Post image"}
-                amountDonated={1}
-              />
-            ))}
-          </div>
+        {/* Horizontal Scroll Gallery */}
+        {!error && (posts.length > 0 || initialLoad) && (
+          <HorizontalScrollGallery posts={posts} isLoading={loading} loadMoreRef={observerTarget} />
         )}
-
-        {/* Initial Loading Skeletons */}
-        {initialLoad && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {[...Array(8)].map((_, i) => (
-              <SkeletonCard key={i} />
-            ))}
-          </div>
-        )}
-
-        {/* Loading More Spinner */}
-        {loading && !initialLoad && (
-          <div className="flex justify-center items-center py-12">
-            <div className="w-12 h-12 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin"></div>
-          </div>
-        )}
-
-        {/* Intersection Observer target */}
-        <div ref={observerTarget} className="h-5" />
       </main>
       <Footer />
     </div>
