@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Footer from "@/components/footer";
-import HorizontalScrollGallery from "@/components/gallery/HorizontalScrollGallery";
+import MasonryGrid from "@/components/gallery/MasonryGrid";
 import { API_URL } from "@/constants";
 import type { PaginatedResponse, Post } from "@/types";
 
@@ -12,11 +12,9 @@ export default function HomePage() {
   const [hasMore, setHasMore] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
 
-  const observerTarget = useRef<HTMLDivElement>(null);
-
   const fetchPosts = useCallback(
     async (cursor: string | null = null) => {
-      if (loading) return;
+      if (loading || !hasMore) return;
 
       setLoading(true);
       setError(null);
@@ -35,7 +33,9 @@ export default function HomePage() {
         const data: PaginatedResponse<Post[]> = await response.json();
 
         if (data.success && data.data) {
-          setPosts((prev) => (cursor ? [...prev, ...(data.data || [])] : data.data || []));
+          setPosts((prev) =>
+            cursor ? [...prev, ...(data.data || [])] : data.data || [],
+          );
           setNextCursor(data.next_cursor);
           setHasMore(data.has_more);
         } else {
@@ -49,7 +49,7 @@ export default function HomePage() {
         setInitialLoad(false);
       }
     },
-    [loading]
+    [loading, hasMore],
   );
 
   // Initial load
@@ -57,39 +57,38 @@ export default function HomePage() {
     fetchPosts();
   }, []);
 
-  // Infinite scroll with Intersection Observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore && !loading && nextCursor) {
-          fetchPosts(nextCursor);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const currentTarget = observerTarget.current;
-    if (currentTarget) {
-      observer.observe(currentTarget);
-    }
-
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget);
+  // Handle bidirectional loading
+  const handleLoadMore = useCallback(
+    (direction: "vertical" | "horizontal") => {
+      console.log(`Loading more in ${direction} direction`);
+      if (nextCursor && hasMore && !loading) {
+        fetchPosts(nextCursor);
       }
-    };
-  }, [hasMore, loading, nextCursor, fetchPosts]);
+    },
+    [nextCursor, hasMore, loading, fetchPosts],
+  );
 
   return (
-    <div className="min-h-screen w-full">
-      <main className="w-full flex gap-4 py-12 px-4">
+    <div className="min-h-screen w-full bg-background-light dark:bg-background-dark transition-colors duration-300">
+      <main className="max-w-[1440px] mx-auto px-4 py-8 lg:px-10">
+        {/* Hero Section */}
+        <section className="max-w-2xl mx-auto text-center mb-12 animate-fadeIn">
+          <h2 className="text-[#1b140d] dark:text-white text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
+            Small Acts, Big Wags
+          </h2>
+          <p className="text-[#9a734c] dark:text-[#c0a080] text-lg font-medium max-w-lg mx-auto leading-relaxed">
+            Every pet photo shared fuels our micro-philanthropy mission to
+            support local shelters and rescue groups.
+          </p>
+        </section>
+
         {/* Error State */}
         {error && !posts.length && (
           <div className="text-center py-12 text-slate-400">
-            <h2 className="text-2xl font-semibold mb-4 text-slate-100">
+            <h2 className="text-2xl font-semibold mb-4 text-[#1b140d] dark:text-white">
               Oops! Something went wrong
             </h2>
-            <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-8 text-red-300 max-w-md mx-auto">
+            <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-8 text-red-600 dark:text-red-300 max-w-md mx-auto">
               {error}
             </div>
           </div>
@@ -98,14 +97,22 @@ export default function HomePage() {
         {/* Empty State */}
         {!error && posts.length === 0 && !initialLoad && (
           <div className="text-center py-12 text-slate-400">
-            <h2 className="text-2xl font-semibold mb-2 text-slate-100">No posts yet</h2>
-            <p>Be the first to share something amazing!</p>
+            <h2 className="text-2xl font-semibold mb-2 text-[#1b140d] dark:text-white">
+              No posts yet
+            </h2>
+            <p className="text-[#9a734c] dark:text-[#c0a080]">
+              Be the first to share something amazing!
+            </p>
           </div>
         )}
 
-        {/* Horizontal Scroll Gallery */}
+        {/* Masonry Grid with Bidirectional Scroll */}
         {!error && (posts.length > 0 || initialLoad) && (
-          <HorizontalScrollGallery posts={posts} isLoading={loading} loadMoreRef={observerTarget} />
+          <MasonryGrid
+            posts={posts}
+            isLoading={loading}
+            onLoadMore={handleLoadMore}
+          />
         )}
       </main>
       <Footer />

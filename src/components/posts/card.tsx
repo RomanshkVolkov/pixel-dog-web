@@ -8,7 +8,7 @@ type PostCardProps = {
 export default function PostCard({ image, alt, amountDonated, className = "" }: PostCardProps) {
   return (
     <article
-      className={`min-w-[300px] md:min-w-[350px] snap-center h-full flex flex-col ${className}`}
+      className={`min-w-[300px] md:min-w-[350px] max-w-[400px] snap-center h-full flex flex-col ${className}`}
     >
       <div className="relative group rounded-xl overflow-hidden cursor-zoom-in h-full flex-1">
         <img
@@ -19,8 +19,8 @@ export default function PostCard({ image, alt, amountDonated, className = "" }: 
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
           <div className="flex justify-between items-center text-white">
-            <span className="font-bold">Buddy</span>
-            <div className="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded">
+            <span className="font-bold text-lg">Buddy</span>
+            <div className="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded">
               ${amountDonated.toFixed(2)} Donated
             </div>
           </div>
@@ -28,7 +28,7 @@ export default function PostCard({ image, alt, amountDonated, className = "" }: 
         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
             type="button"
-            className="bg-white/90 backdrop-blur size-8 rounded-full flex items-center justify-center text-red-500"
+            className="bg-white/90 backdrop-blur size-8 rounded-full flex items-center justify-center text-red-500 hover:scale-110 active:scale-90 transition-transform shadow-sm"
           >
             <span
               className="material-symbols-outlined text-lg"
