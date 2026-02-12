@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { API_URL, PAYMENT_API_URL } from "@/constants";
+import { PAYMENT_API_URL, POST_API_URL } from "@/constants";
 import { useAuth } from "@/contexts/AuthContext";
 import type { APIResponse, Donation, Post } from "@/types";
 
@@ -88,7 +88,7 @@ export default function UploadPage() {
       formData.append("donationID", donation.id);
       formData.append("description", description);
 
-      const response = await fetch(`${API_URL}/posts/`, {
+      const response = await fetch(`${POST_API_URL}/posts/`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -180,7 +180,8 @@ export default function UploadPage() {
             Donation Required
           </h1>
           <p className="text-gray-600 mb-8">
-            To upload a photo, you need to make a donation first. Each donation allows you to upload one photo to the gallery.
+            To upload a photo, you need to make a donation first. Each donation
+            allows you to upload one photo to the gallery.
           </p>
 
           <div className="space-y-4">
@@ -229,7 +230,9 @@ export default function UploadPage() {
               <span className="material-symbols-outlined text-green-600">
                 check_circle
               </span>
-              <span className="text-green-700 font-medium">Donation Active</span>
+              <span className="text-green-700 font-medium">
+                Donation Active
+              </span>
             </div>
             <span className="text-green-700 font-bold">
               {formatAmount(donation.amountCents)}
@@ -255,7 +258,9 @@ export default function UploadPage() {
                   }}
                   className="absolute top-2 right-2 w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all"
                 >
-                  <span className="material-symbols-outlined text-lg">close</span>
+                  <span className="material-symbols-outlined text-lg">
+                    close
+                  </span>
                 </button>
               </div>
             ) : (

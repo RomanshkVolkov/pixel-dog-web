@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Footer from "@/components/footer";
 import MasonryGrid from "@/components/gallery/MasonryGrid";
-import { API_URL } from "@/constants";
+import { POST_API_URL } from "@/constants";
 import type { PaginatedResponse, Post } from "@/types";
 
 export default function HomePage() {
@@ -21,8 +21,8 @@ export default function HomePage() {
 
       try {
         const url = cursor
-          ? `${API_URL}/posts?cursor=${encodeURIComponent(cursor)}`
-          : `${API_URL}/posts`;
+          ? `${POST_API_URL}/posts?cursor=${encodeURIComponent(cursor)}`
+          : `${POST_API_URL}/posts`;
 
         const response = await fetch(url);
 
