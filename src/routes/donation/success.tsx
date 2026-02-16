@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
 import { PAYMENT_API_URL } from "@/constants";
 import { useAuth } from "@/contexts/AuthContext";
@@ -9,6 +10,7 @@ export default function DonationSuccessPage() {
   const [searchParams] = useSearchParams();
   const [donation, setDonation] = useState<Donation | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   const sessionId = searchParams.get("session_id");
 
@@ -57,10 +59,10 @@ export default function DonationSuccessPage() {
         </div>
 
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Thank You for Your Donation!
+          {t("donationSuccess.title")}
         </h1>
         <p className="text-gray-600 mb-8">
-          Your support helps us maintain Pixel Dog and celebrate our furry friends.
+          {t("donationSuccess.subtitle")}
         </p>
 
         {isLoading ? (
@@ -72,18 +74,18 @@ export default function DonationSuccessPage() {
           </div>
         ) : donation ? (
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-            <p className="text-gray-600 mb-2">Donation Amount</p>
+            <p className="text-gray-600 mb-2">{t("donationSuccess.donationAmount")}</p>
             <p className="text-3xl font-bold text-primary">
               {formatAmount(donation.amountCents)}
             </p>
             <p className="text-sm text-gray-500 mt-2">
-              Status: <span className="text-green-600 font-medium">Completed</span>
+              {t("donationSuccess.statusLabel")} <span className="text-green-600 font-medium">{t("donationSuccess.statusCompleted")}</span>
             </p>
           </div>
         ) : (
           <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
             <p className="text-gray-600">
-              Your donation is being processed. This may take a few moments.
+              {t("donationSuccess.processingMessage")}
             </p>
           </div>
         )}
@@ -95,7 +97,7 @@ export default function DonationSuccessPage() {
           >
             <span className="flex items-center justify-center gap-2">
               <span className="material-symbols-outlined">cloud_upload</span>
-              Upload Your Pet's Photo
+              {t("donationSuccess.uploadPhoto")}
             </span>
           </Link>
 
@@ -103,13 +105,12 @@ export default function DonationSuccessPage() {
             to="/"
             className="block w-full py-4 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-all"
           >
-            Return to Gallery
+            {t("common.returnToGallery")}
           </Link>
         </div>
 
         <p className="text-sm text-gray-500 mt-8">
-          You can upload your photo now or later from the gallery.
-          Each donation allows you to upload one photo.
+          {t("donationSuccess.uploadLater")}
         </p>
       </div>
     </div>

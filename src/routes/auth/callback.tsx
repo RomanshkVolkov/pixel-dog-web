@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 export default function AuthCallback() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // The AuthContext handles token extraction from URL fragment
@@ -22,10 +24,10 @@ export default function AuthCallback() {
           <div className="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin" />
         </div>
         <h1 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-          Signing you in...
+          {t("auth.signingIn")}
         </h1>
         <p className="text-gray-500 dark:text-gray-400">
-          Please wait while we complete the authentication
+          {t("auth.pleaseWait")}
         </p>
       </div>
     </div>

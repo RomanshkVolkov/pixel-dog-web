@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { getImageUrl } from "@/constants";
 import { useAuth } from "@/contexts/AuthContext";
@@ -22,6 +23,7 @@ export default function MasonryGrid({
   const { isNearBottom } = useScrollDirection(containerRef, 400);
   const [columnCount, setColumnCount] = useState(3);
   const { isAuthenticated } = useAuth();
+  const { t } = useTranslation();
 
   // Update column count based on window width
   useEffect(() => {
@@ -81,12 +83,12 @@ export default function MasonryGrid({
                   </span>
                 </div>
                 <h3 className="text-lg font-bold text-[#1b140d] dark:text-white">
-                  Share your Pixel Dog
+                  {t("gallery.shareYourPixelDog")}
                 </h3>
                 <p className="text-sm text-[#9a734c] dark:text-[#c0a080] mt-2">
                   {isAuthenticated
-                    ? "Upload a photo and donate as little as $1.00"
-                    : "Sign in to upload a photo"}
+                    ? t("gallery.uploadAndDonate")
+                    : t("gallery.signInToUpload")}
                 </p>
               </Link>
             )}

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { LoginButtons } from "./LoginButtons";
 
 interface AuthModalProps {
@@ -7,6 +8,8 @@ interface AuthModalProps {
 }
 
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
+  const { t } = useTranslation();
+
   // Close modal on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -80,24 +83,23 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </svg>
           </div>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            Welcome to Pixel Dog
+            {t("auth.welcomeTitle")}
           </h2>
           <p className="text-gray-500 dark:text-gray-400 text-sm">
-            Sign in to upload photos and track your donations to help shelter
-            pets
+            {t("auth.welcomeSubtitle")}
           </p>
         </div>
 
         <LoginButtons />
 
         <p className="mt-6 text-center text-xs text-gray-400">
-          By signing in, you agree to our{" "}
+          {t("auth.agreementText")}{" "}
           <a href="/terms" className="underline hover:text-gray-600">
-            Terms of Service
+            {t("footer.termsOfService")}
           </a>{" "}
-          and{" "}
+          {t("auth.and")}{" "}
           <a href="/privacy" className="underline hover:text-gray-600">
-            Privacy Policy
+            {t("footer.privacyPolicy")}
           </a>
         </p>
       </div>

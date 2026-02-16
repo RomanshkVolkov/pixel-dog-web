@@ -1,18 +1,11 @@
+import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
-
-const errorMessages: Record<string, string> = {
-  missing_params: "The authentication request was incomplete.",
-  invalid_state: "The authentication session expired. Please try again.",
-  parse_failed: "There was an error processing the authentication response.",
-  access_denied: "You denied the authentication request.",
-  failed_to_initiate_auth: "Could not start the authentication process.",
-  default: "An unexpected error occurred during authentication.",
-};
 
 export default function AuthError() {
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
   const error = searchParams.get("error") || "default";
-  const errorMessage = errorMessages[error] || errorMessages.default;
+  const errorMessage = t(`auth.errors.${error}`, { defaultValue: t("auth.errors.default") });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark px-4">
@@ -34,14 +27,14 @@ export default function AuthError() {
         </div>
 
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-          Authentication Failed
+          {t("auth.authFailed")}
         </h1>
 
         <p className="text-gray-500 dark:text-gray-400 mb-6">{errorMessage}</p>
 
         {error !== "default" && (
           <p className="text-xs text-gray-400 dark:text-gray-500 mb-6">
-            Error code: {error}
+            {t("auth.errorCode", { error })}
           </p>
         )}
 
@@ -63,7 +56,7 @@ export default function AuthError() {
                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
               />
             </svg>
-            Go Home
+            {t("auth.goHome")}
           </Link>
 
           <button
@@ -84,7 +77,7 @@ export default function AuthError() {
                 d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
               />
             </svg>
-            Try Again
+            {t("auth.tryAgain")}
           </button>
         </div>
       </div>

@@ -1,0 +1,156 @@
+{
+  "common": {
+    "pixelDog": "Pixel Dog",
+    "donate": "Donar",
+    "donateAndUpload": "Donar y Subir",
+    "signIn": "Iniciar sesion",
+    "returnToGallery": "Volver a la galeria",
+    "makeDonation": "Hacer una donacion",
+    "loading": "Cargando...",
+    "error": "Ocurrio un error"
+  },
+  "nav": {
+    "gallery": "Galeria",
+    "impact": "Impacto",
+    "transparency": "Transparencia",
+    "searchPlaceholder": "Buscar mascota..."
+  },
+  "footer": {
+    "description": "Conectando amantes de las mascotas a traves de micro-donaciones para apoyar refugios en todo el mundo. Cada pixel cuenta.",
+    "organization": "Organizacion",
+    "ourMission": "Nuestra Mision",
+    "howItWorks": "Como Funciona",
+    "transparencyReport": "Informe de Transparencia",
+    "partnerShelters": "Refugios Asociados",
+    "community": "Comunidad",
+    "successStories": "Historias de Exito",
+    "donorFaq": "Preguntas Frecuentes",
+    "termsOfService": "Terminos de Servicio",
+    "privacyPolicy": "Politica de Privacidad",
+    "newsletter": "Boletin",
+    "emailPlaceholder": "Correo electronico",
+    "join": "Unirse",
+    "copyright": "\u00a9 {{year}} Pixel Dog. Una plataforma de micro-filantropia para todas las criaturas."
+  },
+  "auth": {
+    "welcomeTitle": "Bienvenido a Pixel Dog",
+    "welcomeSubtitle": "Inicia sesion para subir fotos y seguir tus donaciones para ayudar a mascotas de refugios",
+    "agreementText": "Al iniciar sesion, aceptas nuestros",
+    "and": "y",
+    "continueWithGoogle": "Continuar con Google",
+    "continueWithApple": "Continuar con Apple",
+    "signingIn": "Iniciando sesion...",
+    "pleaseWait": "Por favor espera mientras completamos la autenticacion",
+    "authFailed": "Error de Autenticacion",
+    "errorCode": "Codigo de error: {{error}}",
+    "goHome": "Ir al Inicio",
+    "tryAgain": "Reintentar",
+    "errors": {
+      "missing_params": "La solicitud de autenticacion estaba incompleta.",
+      "invalid_state": "La sesion de autenticacion expiro. Por favor, intentalo de nuevo.",
+      "parse_failed": "Hubo un error al procesar la respuesta de autenticacion.",
+      "access_denied": "Denegaste la solicitud de autenticacion.",
+      "failed_to_initiate_auth": "No se pudo iniciar el proceso de autenticacion.",
+      "default": "Ocurrio un error inesperado durante la autenticacion."
+    }
+  },
+  "userMenu": {
+    "myProfile": "Mi Perfil",
+    "myPosts": "Mis Publicaciones",
+    "myDonations": "Mis Donaciones",
+    "signOut": "Cerrar sesion"
+  },
+  "home": {
+    "heroTitle": "Pequeños Actos, Grandes Alegrias",
+    "heroSubtitle": "Cada foto de mascota compartida impulsa nuestra mision de micro-filantropia para apoyar refugios y grupos de rescate locales.",
+    "errorTitle": "Algo salio mal",
+    "emptyTitle": "Aun no hay publicaciones",
+    "emptySubtitle": "Se el primero en compartir algo increible!"
+  },
+  "gallery": {
+    "shareYourPixelDog": "Comparte tu Pixel Dog",
+    "uploadAndDonate": "Sube una foto y dona desde $1.00",
+    "signInToUpload": "Inicia sesion para subir una foto",
+    "donated": "${{amount}} Donado"
+  },
+  "upload": {
+    "title": "Sube la Foto de tu Mascota",
+    "subtitle": "Comparte a tu amigo peludo con la comunidad de Pixel Dog",
+    "donationActive": "Donacion Activa",
+    "petPhoto": "Foto de Mascota",
+    "clickToSelect": "Haz clic para seleccionar una foto",
+    "fileTypes": "PNG, JPG, WEBP hasta 10MB",
+    "descriptionLabel": "Descripcion (Opcional)",
+    "descriptionPlaceholder": "Cuentanos sobre tu mascota...",
+    "uploading": "Subiendo...",
+    "uploadPhoto": "Subir Foto",
+    "agreement": "Al subir, confirmas que tienes los derechos para compartir esta foto y aceptas nuestros terminos de servicio.",
+    "successTitle": "Foto Subida!",
+    "successSubtitle": "La foto de tu mascota ha sido agregada a la galeria de Pixel Dog.",
+    "viewGallery": "Ver Galeria",
+    "uploadAnother": "Subir Otra Foto",
+    "checkingDonation": "Verificando estado de donacion...",
+    "donationRequired": "Donacion Requerida",
+    "donationRequiredDesc": "Para subir una foto, necesitas hacer una donacion primero. Cada donacion te permite subir una foto a la galeria.",
+    "errorInvalidFile": "Por favor selecciona un archivo de imagen",
+    "errorFileSize": "La imagen debe ser menor a 10MB",
+    "errorUploadFailed": "Error al subir la imagen",
+    "errorUploadRetry": "Error al subir la imagen. Por favor, intentalo de nuevo."
+  },
+  "donation": {
+    "title": "Hacer una Donacion",
+    "subtitle": "Apoya a Pixel Dog y sube la foto de tu mascota a nuestra galeria",
+    "selectAmount": "Seleccionar Monto",
+    "customAmount": "Monto Personalizado",
+    "enterAmount": "Ingresa el monto",
+    "minimumDonation": "Donacion minima: $1.00",
+    "minimumDonationError": "La donacion minima es $1.00",
+    "donationAmount": "Monto de Donacion",
+    "processing": "Procesando...",
+    "donateAmount": "Donar {{amount}}",
+    "securePoweredByStripe": "Pago seguro con Stripe",
+    "whatHappensNext": "Que sigue?",
+    "step1": "1. Completa tu donacion a traves de Stripe",
+    "step2": "2. Sube la foto de tu mascota a la galeria",
+    "step3": "3. Tu foto se mostrara con tu insignia de donacion",
+    "errorCreateSession": "Error al crear la sesion de donacion",
+    "errorConnection": "Error al conectar con el servicio de pago"
+  },
+  "donationSuccess": {
+    "title": "Gracias por tu Donacion!",
+    "subtitle": "Tu apoyo nos ayuda a mantener Pixel Dog y celebrar a nuestros amigos peludos.",
+    "donationAmount": "Monto de Donacion",
+    "statusCompleted": "Completado",
+    "statusLabel": "Estado:",
+    "processingMessage": "Tu donacion esta siendo procesada. Esto puede tomar unos momentos.",
+    "uploadPhoto": "Sube la Foto de tu Mascota",
+    "uploadLater": "Puedes subir tu foto ahora o mas tarde desde la galeria. Cada donacion te permite subir una foto."
+  },
+  "donationCancel": {
+    "title": "Donacion Cancelada",
+    "subtitle": "No te preocupes! Tu donacion no fue procesada. Puedes intentarlo de nuevo cuando quieras.",
+    "tryAgain": "Intentar de Nuevo",
+    "needHelp": "Necesitas ayuda?",
+    "helpMessage": "Si tuviste algun problema durante el pago, por favor contacta a nuestro equipo de soporte."
+  },
+  "myPosts": {
+    "title": "Mis Publicaciones",
+    "subtitle": "Todas las fotos de mascotas que has compartido",
+    "newPost": "Nueva Publicacion",
+    "emptyTitle": "Aun no hay publicaciones",
+    "emptySubtitle": "Dona y comparte tu primera foto de mascota!"
+  },
+  "myDonations": {
+    "title": "Mis Donaciones",
+    "subtitle": "Tu historial de contribuciones",
+    "emptyTitle": "Aun no hay donaciones",
+    "emptySubtitle": "Haz tu primera donacion y apoya a los refugios locales!",
+    "photoUploaded": "Foto subida"
+  },
+  "donationStatus": {
+    "completed": "completado",
+    "pending": "pendiente",
+    "failed": "fallido",
+    "cancelled": "cancelado"
+  }
+}

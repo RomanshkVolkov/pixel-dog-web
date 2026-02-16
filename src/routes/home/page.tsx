@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Footer from "@/components/footer";
 import MasonryGrid from "@/components/gallery/MasonryGrid";
 import { POST_API_URL } from "@/constants";
@@ -11,6 +12,7 @@ export default function HomePage() {
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
+  const { t } = useTranslation();
 
   const fetchPosts = useCallback(
     async (cursor: string | null = null) => {
@@ -42,14 +44,14 @@ export default function HomePage() {
           setError("Failed to load posts");
         }
       } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
+        setError(err instanceof Error ? err.message : t("common.error"));
         console.error("Error fetching posts:", err);
       } finally {
         setLoading(false);
         setInitialLoad(false);
       }
     },
-    [loading, hasMore],
+    [loading, hasMore, t],
   );
 
   // Initial load
@@ -74,11 +76,10 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="max-w-2xl mx-auto text-center mb-12 animate-fadeIn">
           <h2 className="text-[#1b140d] dark:text-white text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
-            Small Acts, Big Wags
+            {t("home.heroTitle")}
           </h2>
           <p className="text-[#9a734c] dark:text-[#c0a080] text-lg font-medium max-w-lg mx-auto leading-relaxed">
-            Every pet photo shared fuels our micro-philanthropy mission to
-            support local shelters and rescue groups.
+            {t("home.heroSubtitle")}
           </p>
         </section>
 
@@ -86,7 +87,7 @@ export default function HomePage() {
         {error && !posts.length && (
           <div className="text-center py-12 text-slate-400">
             <h2 className="text-2xl font-semibold mb-4 text-[#1b140d] dark:text-white">
-              Oops! Something went wrong
+              {t("home.errorTitle")}
             </h2>
             <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-8 text-red-600 dark:text-red-300 max-w-md mx-auto">
               {error}
@@ -98,10 +99,10 @@ export default function HomePage() {
         {!error && posts.length === 0 && !initialLoad && (
           <div className="text-center py-12 text-slate-400">
             <h2 className="text-2xl font-semibold mb-2 text-[#1b140d] dark:text-white">
-              No posts yet
+              {t("home.emptyTitle")}
             </h2>
             <p className="text-[#9a734c] dark:text-[#c0a080]">
-              Be the first to share something amazing!
+              {t("home.emptySubtitle")}
             </p>
           </div>
         )}

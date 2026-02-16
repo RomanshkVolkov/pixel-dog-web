@@ -7,6 +7,8 @@ import DonatePage from "./routes/donation/page";
 import DonationSuccessPage from "./routes/donation/success";
 import HomeLayout from "./routes/home/layout";
 import HomePage from "./routes/home/page";
+import MyDonationsPage from "./routes/my-donations/page";
+import MyPostsPage from "./routes/my-posts/page";
 import UploadPage from "./routes/upload/page";
 
 const router = createBrowserRouter([
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/upload",
         element: <UploadPage />,
+      },
+      {
+        path: "/my-posts",
+        element: <MyPostsPage />,
+      },
+      {
+        path: "/my-donations",
+        element: <MyDonationsPage />,
       },
     ],
   },

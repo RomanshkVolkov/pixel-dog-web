@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { PAYMENT_API_URL } from "@/constants";
 import { useAuth } from "@/contexts/AuthContext";
@@ -9,6 +10,7 @@ const PRESET_AMOUNTS = [100, 500, 1000, 2500, 5000];
 export default function DonatePage() {
   const { isAuthenticated, accessToken } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [amountCents, setAmountCents] = useState(100);
   const [customAmount, setCustomAmount] = useState("");
   const [isCustom, setIsCustom] = useState(false);
@@ -40,7 +42,7 @@ export default function DonatePage() {
 
   const handleDonate = async () => {
     if (amountCents < 100) {
-      setError("Minimum donation is $1.00");
+      setError(t("donation.minimumDonationError"));
       return;
     }
 
@@ -65,10 +67,10 @@ export default function DonatePage() {
       if (data.success && data.data) {
         window.location.href = data.data.checkoutURL;
       } else {
-        setError(data.error?.message || "Failed to create donation session");
+        setError(data.error?.message || t("donation.errorCreateSession"));
       }
     } catch {
-      setError("Failed to connect to payment service");
+      setError(t("donation.errorConnection"));
     } finally {
       setIsLoading(false);
     }
@@ -88,16 +90,16 @@ export default function DonatePage() {
             </span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Make a Donation
+            {t("donation.title")}
           </h1>
           <p className="text-gray-600">
-            Support Pixel Dog and upload your pet's photo to our gallery
+            {t("donation.subtitle")}
           </p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Select Amount
+            {t("donation.selectAmount")}
           </h2>
 
           <div className="grid grid-cols-3 gap-3 mb-4">
@@ -118,7 +120,7 @@ export default function DonatePage() {
 
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Custom Amount
+              {t("donation.customAmount")}
             </label>
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -128,7 +130,7 @@ export default function DonatePage() {
                 type="number"
                 min="1"
                 step="0.01"
-                placeholder="Enter amount"
+                placeholder={t("donation.enterAmount")}
                 value={customAmount}
                 onChange={(e) => handleCustomAmountChange(e.target.value)}
                 className={`w-full pl-8 pr-4 py-3 rounded-xl border-2 transition-all ${
@@ -138,7 +140,7 @@ export default function DonatePage() {
                 } outline-none`}
               />
             </div>
-            <p className="text-xs text-gray-500 mt-1">Minimum donation: $1.00</p>
+            <p className="text-xs text-gray-500 mt-1">{t("donation.minimumDonation")}</p>
           </div>
 
           {error && (
@@ -149,7 +151,7 @@ export default function DonatePage() {
 
           <div className="bg-gray-50 rounded-xl p-4 mb-6">
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Donation Amount</span>
+              <span className="text-gray-600">{t("donation.donationAmount")}</span>
               <span className="text-2xl font-bold text-gray-900">
                 {formatAmount(amountCents)}
               </span>
@@ -166,27 +168,27 @@ export default function DonatePage() {
                 <span className="animate-spin material-symbols-outlined">
                   progress_activity
                 </span>
-                Processing...
+                {t("donation.processing")}
               </>
             ) : (
               <>
                 <span className="material-symbols-outlined">lock</span>
-                Donate {formatAmount(amountCents)}
+                {t("donation.donateAmount", { amount: formatAmount(amountCents) })}
               </>
             )}
           </button>
 
           <p className="text-center text-xs text-gray-500 mt-4">
-            Secure payment powered by Stripe
+            {t("donation.securePoweredByStripe")}
           </p>
         </div>
 
         <div className="mt-8 text-center">
-          <h3 className="font-semibold text-gray-900 mb-2">What happens next?</h3>
+          <h3 className="font-semibold text-gray-900 mb-2">{t("donation.whatHappensNext")}</h3>
           <div className="text-sm text-gray-600 space-y-2">
-            <p>1. Complete your donation via Stripe</p>
-            <p>2. Upload your pet's photo to the gallery</p>
-            <p>3. Your photo will be displayed with your donation badge</p>
+            <p>{t("donation.step1")}</p>
+            <p>{t("donation.step2")}</p>
+            <p>{t("donation.step3")}</p>
           </div>
         </div>
       </div>

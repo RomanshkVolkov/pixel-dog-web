@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
+
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-[#f3ede7] dark:bg-[#150e09] py-12 px-6 lg:px-10">
       <div className="max-w-360 mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -11,62 +15,61 @@ export default function Footer() {
             >
               pets
             </span>
-            <h2 className="text-xl font-bold">Pixel Dog</h2>
+            <h2 className="text-xl font-bold">{t("common.pixelDog")}</h2>
           </div>
           <p className="text-sm text-[#9a734c] max-w-xs">
-            Connecting pet lovers through micro-donations to support shelters
-            worldwide. Every pixel counts.
+            {t("footer.description")}
           </p>
         </div>
         <div className="flex flex-col gap-3">
           <h3 className="font-bold text-sm uppercase tracking-wider text-[#9a734c]">
-            Organization
+            {t("footer.organization")}
           </h3>
           <a className="text-sm hover:text-primary transition-colors" href="#">
-            Our Mission
+            {t("footer.ourMission")}
           </a>
           <a className="text-sm hover:text-primary transition-colors" href="#">
-            How it Works
+            {t("footer.howItWorks")}
           </a>
           <a className="text-sm hover:text-primary transition-colors" href="#">
-            Transparency Report
+            {t("footer.transparencyReport")}
           </a>
           <a className="text-sm hover:text-primary transition-colors" href="#">
-            Partner Shelters
+            {t("footer.partnerShelters")}
           </a>
         </div>
         <div className="flex flex-col gap-3">
           <h3 className="font-bold text-sm uppercase tracking-wider text-[#9a734c]">
-            Community
+            {t("footer.community")}
           </h3>
           <a className="text-sm hover:text-primary transition-colors" href="#">
-            Success Stories
+            {t("footer.successStories")}
           </a>
           <a className="text-sm hover:text-primary transition-colors" href="#">
-            Donor FAQ
+            {t("footer.donorFaq")}
           </a>
           <a className="text-sm hover:text-primary transition-colors" href="#">
-            Terms of Service
+            {t("footer.termsOfService")}
           </a>
           <a className="text-sm hover:text-primary transition-colors" href="#">
-            Privacy Policy
+            {t("footer.privacyPolicy")}
           </a>
         </div>
         <div className="space-y-4">
           <h3 className="font-bold text-sm uppercase tracking-wider text-[#9a734c]">
-            Newsletter
+            {t("footer.newsletter")}
           </h3>
           <div className="flex gap-2">
             <input
               className="bg-white dark:bg-background-dark border-none rounded-lg px-4 py-2 text-sm flex-1 focus:ring-1 focus:ring-primary"
-              placeholder="Email address"
+              placeholder={t("footer.emailPlaceholder")}
               type="email"
             />
             <button
               className="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold"
               type="button"
             >
-              Join
+              {t("footer.join")}
             </button>
           </div>
           <div className="flex gap-4 pt-2">
@@ -92,8 +95,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="max-w-360 mx-auto mt-12 pt-8 border-t border-[#e8dfd5] dark:border-[#2d241d] text-center text-xs text-[#9a734c]">
-        © {year} Pixel Dog. A micro-philanthropy platform for all creatures
-        great and small.
+        {t("footer.copyright", { year })}
       </div>
     </footer>
   );

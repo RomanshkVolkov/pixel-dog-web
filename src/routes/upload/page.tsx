@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { PAYMENT_API_URL, POST_API_URL } from "@/constants";
 import { useAuth } from "@/contexts/AuthContext";
@@ -7,6 +8,7 @@ import type { APIResponse, Donation, Post } from "@/types";
 export default function UploadPage() {
   const { isAuthenticated, accessToken } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [donation, setDonation] = useState<Donation | null>(null);
   const [isLoadingDonation, setIsLoadingDonation] = useState(true);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -55,13 +57,13 @@ export default function UploadPage() {
 
     // Validate file type
     if (!file.type.startsWith("image/")) {
-      setError("Please select an image file");
+      setError(t("upload.errorInvalidFile"));
       return;
     }
 
     // Validate file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
-      setError("Image must be less than 10MB");
+      setError(t("upload.errorFileSize"));
       return;
     }
 
@@ -101,10 +103,10 @@ export default function UploadPage() {
       if (data.success && data.data) {
         setUploadSuccess(true);
       } else {
-        setError(data.error?.message || "Failed to upload image");
+        setError(data.error?.message || t("upload.errorUploadFailed"));
       }
     } catch {
-      setError("Failed to upload image. Please try again.");
+      setError(t("upload.errorUploadRetry"));
     } finally {
       setIsUploading(false);
     }
@@ -129,10 +131,10 @@ export default function UploadPage() {
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Photo Uploaded!
+            {t("upload.successTitle")}
           </h1>
           <p className="text-gray-600 mb-8">
-            Your pet's photo has been added to the Pixel Dog gallery.
+            {t("upload.successSubtitle")}
           </p>
 
           <div className="space-y-4">
@@ -140,14 +142,14 @@ export default function UploadPage() {
               to="/"
               className="block w-full py-4 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-all"
             >
-              View Gallery
+              {t("upload.viewGallery")}
             </Link>
 
             <Link
               to="/donate"
               className="block w-full py-4 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-all"
             >
-              Upload Another Photo
+              {t("upload.uploadAnother")}
             </Link>
           </div>
         </div>
@@ -160,7 +162,7 @@ export default function UploadPage() {
       <div className="min-h-screen bg-background-light py-12 px-4">
         <div className="max-w-md mx-auto text-center">
           <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-gray-600">Checking donation status...</p>
+          <p className="text-gray-600">{t("upload.checkingDonation")}</p>
         </div>
       </div>
     );
@@ -177,11 +179,10 @@ export default function UploadPage() {
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Donation Required
+            {t("upload.donationRequired")}
           </h1>
           <p className="text-gray-600 mb-8">
-            To upload a photo, you need to make a donation first. Each donation
-            allows you to upload one photo to the gallery.
+            {t("upload.donationRequiredDesc")}
           </p>
 
           <div className="space-y-4">
@@ -191,7 +192,7 @@ export default function UploadPage() {
             >
               <span className="flex items-center justify-center gap-2">
                 <span className="material-symbols-outlined">favorite</span>
-                Make a Donation
+                {t("common.makeDonation")}
               </span>
             </Link>
 
@@ -199,7 +200,7 @@ export default function UploadPage() {
               to="/"
               className="block w-full py-4 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-all"
             >
-              Return to Gallery
+              {t("common.returnToGallery")}
             </Link>
           </div>
         </div>
@@ -217,10 +218,10 @@ export default function UploadPage() {
             </span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Upload Your Pet's Photo
+            {t("upload.title")}
           </h1>
           <p className="text-gray-600">
-            Share your furry friend with the Pixel Dog community
+            {t("upload.subtitle")}
           </p>
         </div>
 
@@ -231,7 +232,7 @@ export default function UploadPage() {
                 check_circle
               </span>
               <span className="text-green-700 font-medium">
-                Donation Active
+                {t("upload.donationActive")}
               </span>
             </div>
             <span className="text-green-700 font-bold">
@@ -241,7 +242,7 @@ export default function UploadPage() {
 
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Pet Photo
+              {t("upload.petPhoto")}
             </label>
 
             {preview ? (
@@ -275,8 +276,8 @@ export default function UploadPage() {
                   <span className="material-symbols-outlined text-5xl mb-2">
                     add_photo_alternate
                   </span>
-                  <p className="font-medium">Click to select a photo</p>
-                  <p className="text-sm">PNG, JPG, WEBP up to 10MB</p>
+                  <p className="font-medium">{t("upload.clickToSelect")}</p>
+                  <p className="text-sm">{t("upload.fileTypes")}</p>
                 </div>
               </label>
             )}
@@ -284,12 +285,12 @@ export default function UploadPage() {
 
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Description (Optional)
+              {t("upload.descriptionLabel")}
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Tell us about your pet..."
+              placeholder={t("upload.descriptionPlaceholder")}
               maxLength={500}
               rows={3}
               className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary outline-none transition-all resize-none"
@@ -315,20 +316,19 @@ export default function UploadPage() {
                 <span className="animate-spin material-symbols-outlined">
                   progress_activity
                 </span>
-                Uploading...
+                {t("upload.uploading")}
               </>
             ) : (
               <>
                 <span className="material-symbols-outlined">cloud_upload</span>
-                Upload Photo
+                {t("upload.uploadPhoto")}
               </>
             )}
           </button>
         </div>
 
         <p className="text-center text-sm text-gray-500">
-          By uploading, you confirm that you have the rights to share this photo
-          and agree to our terms of service.
+          {t("upload.agreement")}
         </p>
       </div>
     </div>

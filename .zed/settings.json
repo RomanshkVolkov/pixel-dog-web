@@ -3,4 +3,11 @@
     "source.organizeImports.biome": true,
     "source.fixAll.biome": true,
   },
+  "language_servers": [
+    "biome",
+    "vtsls",
+    "tailwindcss-language-server",
+    "json-language-server",
+    "!eslint"
+  ]
 }

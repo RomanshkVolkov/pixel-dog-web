@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 type PostCardProps = {
   image: string;
   alt: string;
@@ -6,6 +8,8 @@ type PostCardProps = {
 };
 
 export default function PostCard({ image, alt, amountDonated, className = "" }: PostCardProps) {
+  const { t } = useTranslation();
+
   return (
     <article
       className={`min-w-[300px] md:min-w-[350px] max-w-[400px] snap-center h-full flex flex-col ${className}`}
@@ -21,7 +25,7 @@ export default function PostCard({ image, alt, amountDonated, className = "" }: 
           <div className="flex justify-between items-center text-white">
             <span className="font-bold text-lg">Buddy</span>
             <div className="flex items-center gap-1 bg-primary text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded">
-              ${amountDonated.toFixed(2)} Donated
+              {t("gallery.donated", { amount: amountDonated.toFixed(2) })}
             </div>
           </div>
         </div>
