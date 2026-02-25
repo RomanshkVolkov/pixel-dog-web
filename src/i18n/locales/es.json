@@ -147,6 +147,12 @@
     "emptySubtitle": "Haz tu primera donacion y apoya a los refugios locales!",
     "photoUploaded": "Foto subida"
   },
+  "photoWall": {
+    "posts": "publicaciones",
+    "jumpPlaceholder": "x, y",
+    "jumpGo": "Ir",
+    "controlsHint": "Arrastra para mover · Rueda para zoom · Pellizca en tactil"
+  },
   "donationStatus": {
     "completed": "completado",
     "pending": "pendiente",

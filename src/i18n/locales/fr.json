@@ -147,6 +147,12 @@
     "emptySubtitle": "Faites votre premier don et soutenez les refuges locaux !",
     "photoUploaded": "Photo publiee"
   },
+  "photoWall": {
+    "posts": "publications",
+    "jumpPlaceholder": "x, y",
+    "jumpGo": "Aller",
+    "controlsHint": "Glisser pour deplacer · Molette pour zoom · Pincer sur tactile"
+  },
   "donationStatus": {
     "completed": "complete",
     "pending": "en attente",

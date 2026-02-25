@@ -147,6 +147,12 @@
     "emptySubtitle": "Faca sua primeira doacao e apoie os abrigos locais!",
     "photoUploaded": "Foto enviada"
   },
+  "photoWall": {
+    "posts": "publicacoes",
+    "jumpPlaceholder": "x, y",
+    "jumpGo": "Ir",
+    "controlsHint": "Arraste para mover · Role para zoom · Pince no toque"
+  },
   "donationStatus": {
     "completed": "concluido",
     "pending": "pendente",

@@ -147,6 +147,12 @@
     "emptySubtitle": "Fes la teva primera donacio i dona suport als refugis locals!",
     "photoUploaded": "Foto pujada"
   },
+  "photoWall": {
+    "posts": "publicacions",
+    "jumpPlaceholder": "x, y",
+    "jumpGo": "Anar",
+    "controlsHint": "Arrossega per moure · Roda per zoom · Pinça en tactil"
+  },
   "donationStatus": {
     "completed": "completat",
     "pending": "pendent",

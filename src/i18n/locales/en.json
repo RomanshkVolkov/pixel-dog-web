@@ -147,6 +147,12 @@
     "emptySubtitle": "Make your first donation and support local shelters!",
     "photoUploaded": "Photo uploaded"
   },
+  "photoWall": {
+    "posts": "posts",
+    "jumpPlaceholder": "x, y",
+    "jumpGo": "Go",
+    "controlsHint": "Drag to pan · Scroll to zoom · Pinch on touch"
+  },
   "donationStatus": {
     "completed": "completed",
     "pending": "pending",
