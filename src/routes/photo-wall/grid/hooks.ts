@@ -75,9 +75,7 @@ export function useGrid({ canvasRef, minimapRef }: UseGridOptions) {
       renderer.markDirty();
     };
 
-    let lastVisibleKeys = new Set<string>();
     renderer.onVisibleKeysChange = (keys) => {
-      lastVisibleKeys = keys;
       loader.updateViewport(keys);
       const progress = loader.getViewportProgress(keys);
       setState((s) => ({ ...s, viewportProgress: progress }));
