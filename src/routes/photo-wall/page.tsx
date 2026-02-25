@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { useGrid } from "./grid/hooks";
 
 export default function PhotoWallPage() {
@@ -33,6 +34,15 @@ export default function PhotoWallPage() {
 
       {/* Top-left HUD */}
       <div className="absolute top-3 left-3 flex flex-col gap-2 z-10">
+        {/* Back to home */}
+        <Link
+          to="/"
+          className="bg-black/60 backdrop-blur-sm text-white/70 hover:text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors w-fit"
+        >
+          <span className="material-symbols-outlined text-sm">arrow_back</span>
+          {t("common.returnToGallery")}
+        </Link>
+
         {/* Zoom indicator */}
         <div className="bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full font-mono">
           {(state.zoom * 100).toFixed(0)}% &nbsp;·&nbsp;{" "}

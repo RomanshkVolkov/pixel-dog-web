@@ -11,6 +11,25 @@ export default function Header() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const { t } = useTranslation();
 
+  const navLinks = [
+    { to: "/", label: t("nav.gallery"), className: "font-semibold" },
+    {
+      to: "/photo-wall",
+      label: t("nav.photoWall"),
+      className: "font-medium text-[#9a734c]",
+    },
+    {
+      to: "/impact",
+      label: t("nav.impact"),
+      className: "font-medium text-[#9a734c]",
+    },
+    {
+      to: "/transparency",
+      label: t("nav.transparency"),
+      className: "font-medium text-[#9a734c]",
+    },
+  ];
+
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b border-solid border-[#f3ede7] dark:border-[#2d241d] bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
@@ -25,27 +44,20 @@ export default function Header() {
                   pets
                 </span>
               </div>
-              <h1 className="text-xl font-bold tracking-tight">{t("common.pixelDog")}</h1>
+              <h1 className="text-xl font-bold tracking-tight">
+                {t("common.pixelDog")}
+              </h1>
             </a>
             <nav className="hidden md:flex items-center gap-6">
-              <Link
-                className="text-sm font-semibold hover:text-primary transition-colors"
-                to="/"
-              >
-                {t("nav.gallery")}
-              </Link>
-              <Link
-                className="text-sm font-medium text-[#9a734c] hover:text-primary transition-colors"
-                to="/impact"
-              >
-                {t("nav.impact")}
-              </Link>
-              <Link
-                className="text-sm font-medium text-[#9a734c] hover:text-primary transition-colors"
-                to="/transparency"
-              >
-                {t("nav.transparency")}
-              </Link>
+              {navLinks.map(({ to, label, className }) => (
+                <Link
+                  key={to}
+                  className={`text-sm ${className} hover:text-primary transition-colors`}
+                  to={to}
+                >
+                  {label}
+                </Link>
+              ))}
             </nav>
           </div>
           <div className="flex items-center gap-4 lg:gap-6">
@@ -68,7 +80,9 @@ export default function Header() {
                 <span className="material-symbols-outlined text-lg">
                   add_circle
                 </span>
-                <span className="hidden sm:inline">{t("common.donateAndUpload")}</span>
+                <span className="hidden sm:inline">
+                  {t("common.donateAndUpload")}
+                </span>
               </Link>
             )}
 

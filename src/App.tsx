@@ -9,6 +9,7 @@ import HomeLayout from "./routes/home/layout";
 import HomePage from "./routes/home/page";
 import MyDonationsPage from "./routes/my-donations/page";
 import MyPostsPage from "./routes/my-posts/page";
+import PhotoWallPage from "./routes/photo-wall/page";
 import UploadPage from "./routes/upload/page";
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         element: <MyDonationsPage />,
       },
     ],
+  },
+  {
+    path: "/photo-wall",
+    element: <PhotoWallPage />,
   },
   {
     path: "/auth/callback",
